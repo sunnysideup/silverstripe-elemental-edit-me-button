@@ -1,0 +1,27 @@
+{
+    "name": "sunnysideup/elemental-edit-me-button",
+    "type": "silverstripe-vendormodule",
+    "description": "adds a bunch of social media tools to your Silverstripe website",
+    "keywords": [
+        "Silverstripe-CMS",
+        "CMS",
+        "Silverstripe",
+        "elemental-edit-me-button"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Nicolaas Francken",
+            "email": "modules@sunnysideup.co.nz",
+            "role": "lead developer"
+        }
+    ],
+    "require": {
+        "silverstripe/recipe-cms": "~4.0@stable"
+    },
+    "autoload": {
+        "psr-4": {
+            "SunnysideUp\\ElementalEditMeButton\\": "src/"
+        }
+    }
+}
