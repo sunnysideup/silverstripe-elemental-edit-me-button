@@ -6,9 +6,9 @@ use SilverStripe\Dev\SapphireTest;
 
 class ElementalEditMeButtonTest extends SapphireTest
 {
-	/**
-	 * @var boolean
-	 */
+    /**
+     * @var boolean
+     */
     protected $usesDatabase = false;
 
     /**
@@ -23,6 +23,6 @@ class ElementalEditMeButtonTest extends SapphireTest
     {
         $exitStatus = shell_exec('php framework/cli-script.php dev/build flush=all  > dev/null; echo $?');
         $exitStatus = intval(trim($exitStatus));
-        $this->assertEquals(0, $exitStatus);
+        $this->assertSame(0, $exitStatus);
     }
 }

@@ -2,3 +2,12 @@
 Name: ElementalEditMeButton
 After: 'framework/*'
 ---
+
+
+PageController:
+  extensions:
+    - Sunnysideup\ElementalEditMeButton\Extensions\AddCanEditButton
+
+SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest:
+  extensions:
+    - Sunnysideup\ElementalEditMeButton\Form\GridFieldDetailFormItemRequestExtension

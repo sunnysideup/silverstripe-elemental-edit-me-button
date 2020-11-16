@@ -1,7 +1,0 @@
----
-Name: elemental-edit-me-button_routes
-After: framework/routes#coreroutes
----
-SilverStripe\Control\Director:
-  rules:
-    admin/can-i-edit-elemental-blocks//$Action/$ID: Sunnysideup\ElementalEditMeButton\Control
