@@ -17,7 +17,7 @@ class GridFieldDetailFormItemRequestExtension extends Extension
                 LiteralField::create(
                     'EditMeButton',
                     '<div class="btn action preview-element-action btn btn-primary">
-                        <a href="'.$this->owner->record->PreviewLink().'" style="color: white;">Preview</a>
+                        <a href="' . $this->owner->record->PreviewLink() . '" style="color: white;">Preview</a>
                     </div>'
                 )
             );
