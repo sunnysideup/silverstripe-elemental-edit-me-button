@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "silverstripe/recipe-cms": "~4.0@stable",
+        "silverstripe/recipe-cms": "^4.0",
         "dnadesign/silverstripe-elemental": "*"
     },
     "autoload": {
