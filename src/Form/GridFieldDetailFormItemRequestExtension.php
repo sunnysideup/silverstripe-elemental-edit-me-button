@@ -13,11 +13,12 @@ class GridFieldDetailFormItemRequestExtension extends Extension
     public function updateFormActions(FieldList $actions)
     {
         if (is_subclass_of($this->owner->record, BaseElement::class, true)) {
+            $link = str_replace('?', '?stage=Stage&', $this->owner->record->PreviewLink());
             $actions->push(
                 LiteralField::create(
                     'EditMeButton',
                     '<div class="btn action preview-element-action btn btn-primary">
-                        <a href="' . $this->owner->record->PreviewLink() . '" style="color: white;">Preview</a>
+                        <a href="' . $link . '" style="color: white;">Preview</a>
                     </div>'
                 )
             );
