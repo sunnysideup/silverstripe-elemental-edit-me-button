@@ -19,7 +19,7 @@ class AddCanEditButton extends Extension
             //we assume that if you can edit one, you can edit all ...
             if ($element && $element->canEdit()) {
                 $elementIds = $elements->column('ID');
-                if (count($elementIds)) {
+                if (count($elementIds) > 0) {
                     $js = $this->getButton();
                     Requirements::customScript(
                         'let ElementalEditMeButtonIds = ' . Convert::array2json($elementIds) . ';
