@@ -3,7 +3,6 @@
 namespace Sunnysideup\ElementalEditMeButton\Form;
 
 use DNADesign\Elemental\Models\BaseElement;
-
 use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\LiteralField;

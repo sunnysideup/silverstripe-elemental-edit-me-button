@@ -4,10 +4,14 @@ namespace SunnysideUp\ElementalEditMeButton;
 
 use SilverStripe\Dev\SapphireTest;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ElementalEditMeButtonTest extends SapphireTest
 {
     /**
-     * @var boolean
+     * @var bool
      */
     protected $usesDatabase = false;
 
@@ -17,7 +21,7 @@ class ElementalEditMeButtonTest extends SapphireTest
     protected $requiredExtensions = [];
 
     /**
-     * Test the dev build
+     * Test the dev build.
      */
     public function TestDevBuild()
     {
