@@ -9,6 +9,7 @@ use SilverStripe\View\Requirements;
 
 class AddCanEditButton extends Extension
 {
+
     public function onAfterInit()
     {
         if ($this->owner->dataRecord->hasExtension(ElementalPageExtension::class)) {
@@ -35,4 +36,5 @@ class AddCanEditButton extends Extension
     {
         return $this->owner->renderWith(AddCanEditButton::class . 'AsJs');
     }
+
 }
