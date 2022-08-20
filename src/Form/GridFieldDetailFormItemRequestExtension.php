@@ -24,6 +24,7 @@ class GridFieldDetailFormItemRequestExtension extends Extension
             if (! strpos($link, '?')) {
                 $link .= '?';
             }
+
             $link = str_replace('?', '?stage=Stage&', $link);
             $actions->push(
                 LiteralField::create(
