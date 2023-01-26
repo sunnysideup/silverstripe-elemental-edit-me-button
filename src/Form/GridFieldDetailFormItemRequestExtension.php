@@ -11,7 +11,7 @@ class GridFieldDetailFormItemRequestExtension extends Extension
 {
     public function updateFormActions(FieldList $actions)
     {
-        if ($this->exists()) {
+        if ($this->getOwner()->record->exists() ) {
             if (is_subclass_of($this->owner->record, BaseElement::class, true)) {
                 $link = $this->owner->record->PreviewLink();
                 $actions->push(
