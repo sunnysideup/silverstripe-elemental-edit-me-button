@@ -7,6 +7,11 @@ use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\LiteralField;
 
+/**
+ * Class \Sunnysideup\ElementalEditMeButton\Form\GridFieldDetailFormItemRequestExtension
+ *
+ * @property GridFieldDetailForm_ItemRequest|GridFieldDetailFormItemRequestExtension $owner
+ */
 class GridFieldDetailFormItemRequestExtension extends Extension
 {
     public function updateFormActions(FieldList $actions)

@@ -7,6 +7,11 @@ use SilverStripe\Core\Convert;
 use SilverStripe\Core\Extension;
 use SilverStripe\View\Requirements;
 
+/**
+ * Class \Sunnysideup\ElementalEditMeButton\Extensions\AddCanEditButton
+ *
+ * @property PageController|AddCanEditButton $owner
+ */
 class AddCanEditButton extends Extension
 {
     public function onAfterInit()
