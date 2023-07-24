@@ -3,6 +3,7 @@
 namespace Sunnysideup\ElementalEditMeButton\Form;
 
 use DNADesign\Elemental\Models\BaseElement;
+use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\LiteralField;
@@ -16,13 +17,27 @@ class GridFieldDetailFormItemRequestExtension extends Extension
 {
     public function updateFormActions(FieldList $actions)
     {
-        if ($this->getOwner()->record->exists() ) {
-            if (is_subclass_of($this->owner->record, BaseElement::class, true)) {
-                $link = $this->owner->record->PreviewLink();
+        if ($this->getOwner()->record->exists()) {
+            /** @var BaseElement $obj */
+            $obj = $this->owner->record;
+            if (is_subclass_of($obj, BaseElement::class, true)) {
+                $link = $obj->PreviewLink();
+                $page = $obj->getPage();
+                if($page && $page instanceof SiteTree) {
+                    $link = $page->CMSEditLink();
+                    $actions->push(
+                        LiteralField::create(
+                            'BackToPage',
+                            '<a href="' . $link . '" class="btn action back-to-page-action btn-outline-primary">
+                                <span style="color: #317c33">Back to Page</span>
+                            </a>'
+                        )
+                    );
+                }
                 $actions->push(
                     LiteralField::create(
                         'PreviewLive',
-                        '<div class="btn action preview-element-action btn btn-primary">
+                        '<div class="btn action preview-element-action btn-primary">
                             <a href="' . $link . '" style="color: white;">View Live Version</a>
                         </div>'
                     )
