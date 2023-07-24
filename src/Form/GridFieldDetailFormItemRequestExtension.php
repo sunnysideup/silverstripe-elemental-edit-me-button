@@ -6,6 +6,7 @@ use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\Extension;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest;
 use SilverStripe\Forms\LiteralField;
 
 /**
@@ -18,8 +19,10 @@ class GridFieldDetailFormItemRequestExtension extends Extension
     public function updateFormActions(FieldList $actions)
     {
         if ($this->getOwner()->record->exists()) {
+            /** @var GridFieldDetailForm_ItemRequest $owner */
+            $owner = $this->owner;
             /** @var BaseElement $obj */
-            $obj = $this->owner->record;
+            $obj = $owner->record;
             if (is_subclass_of($obj, BaseElement::class, true)) {
                 $link = $obj->PreviewLink();
                 $page = $obj->getPage();
