@@ -37,14 +37,16 @@ template = `
         </a>
     </div>
 `
-
-let i;
-for (i = 0; i < ElementalEditMeButtonIds.length; i++) {
-  const urlSegment = ElementalEditMeButtonIds[i];
-  let elem = document.querySelector ( '#' + urlSegment );
-  if(elem) {
-    elem.style.position = 'relative';
-    const templateForMe = template.replace('[ID-GOES-HERE]', id);
-    elem.innerHTML = templateForMe + elem.innerHTML;
+const applyTemplateToElements = function(ElementalEditMeButtonIds, template) {
+  for (const id in ElementalEditMeButtonIds) {
+    const key = ElementalEditMeButtonIds[id];
+    let elem = document.querySelector('#' + key);
+    if (elem) {
+      elem.style.position = 'relative';
+      const templateForMe = template.replace('[ID-GOES-HERE]', id);
+      elem.innerHTML = templateForMe + elem.innerHTML;
+    }
   }
 }
+
+applyTemplateToElements(ElementalEditMeButtonIds, template);

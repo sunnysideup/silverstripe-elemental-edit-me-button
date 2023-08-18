@@ -28,13 +28,13 @@ class AddCanEditButton extends Extension
                 $elementIds = [];
                 foreach($elements as $element) {
                     if ($element->canEdit()) {
-                        $elementIds[] = $element->getAnchor();
+                        $elementIds[$element->ID] = $element->getAnchor();
                     }
                 }
                 if (count($elementIds) > 0) {
                     $js = $this->getButton();
                     Requirements::customScript(
-                        'let ElementalEditMeButtonIds = ' . json_encode($elementIds) . ';
+                        'const ElementalEditMeButtonIds = ' . json_encode($elementIds) . ';
                         ' . $js,
                         'ElementalEditMeButton_ids'
                     );
