@@ -40,8 +40,8 @@ template = `
 
 let i;
 for (i = 0; i < ElementalEditMeButtonIds.length; i++) {
-  const id = ElementalEditMeButtonIds[i];
-  let elem = document.querySelector ( '#e' + id );
+  const urlSegment = ElementalEditMeButtonIds[i];
+  let elem = document.querySelector ( '#' + urlSegment );
   if(elem) {
     elem.style.position = 'relative';
     const templateForMe = template.replace('[ID-GOES-HERE]', id);

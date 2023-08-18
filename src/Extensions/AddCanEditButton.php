@@ -23,19 +23,21 @@ class AddCanEditButton extends Extension
         $page = $this->owner->data();
         if ($page && $page->hasExtension(ElementalPageExtension::class)) {
             $elements = $page->ElementalArea()?->Elements();
-            if($elements) {
-                $element = $elements->first();
+            if($elements->exists()) {
                 //we assume that if you can edit one, you can edit all ...
-                if ($element && $element->canEdit()) {
-                    $elementIds = $elements->columnUnique();
-                    if (count($elementIds) > 0) {
-                        $js = $this->getButton();
-                        Requirements::customScript(
-                            'let ElementalEditMeButtonIds = ' . json_encode($elementIds) . ';
-                            ' . $js,
-                            'ElementalEditMeButton_ids'
-                        );
+                $elementIds = [];
+                foreach($elements as $element) {
+                    if ($element->canEdit()) {
+                        $elementIds[] = $element->getAnchor();
                     }
+                }
+                if (count($elementIds) > 0) {
+                    $js = $this->getButton();
+                    Requirements::customScript(
+                        'let ElementalEditMeButtonIds = ' . json_encode($elementIds) . ';
+                        ' . $js,
+                        'ElementalEditMeButton_ids'
+                    );
                 }
             }
         }
