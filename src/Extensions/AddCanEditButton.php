@@ -13,7 +13,7 @@ use Page;
 /**
  * Class \Sunnysideup\ElementalEditMeButton\Extensions\AddCanEditButton
  *
- * @property PageController $owner
+ * @property PageController|AddCanEditButton $owner
  */
 class AddCanEditButton extends Extension
 {
