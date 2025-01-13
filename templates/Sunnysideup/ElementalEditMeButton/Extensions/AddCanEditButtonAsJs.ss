@@ -1,5 +1,7 @@
 <%-- keep space here --%>
-const template = `
+
+;(function () {
+  const template = `
     <div class="edit-me-button">
         <a
             href="/admin/pages/edit/EditForm/$ID/field/ElementalArea/item/[ID-GOES-HERE]/edit"
@@ -9,7 +11,6 @@ const template = `
         </a>
     </div>
 `
-;(function () {
   const applyTemplateToElements = function (
     ElementalEditMeButtonIds,
     template
