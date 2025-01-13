@@ -41,6 +41,9 @@
     overlappingButtons.forEach(button => {
       button.addEventListener('mouseenter', () => {
         let count = 0
+        if(button.classList.contains('out-of-the-way')) {
+          return
+        }
         allButtons.forEach((otherButton, index) => {
           if (
             otherButton === button ||
@@ -50,9 +53,6 @@
             otherButton.style.marginTop = ``
             otherButton.classList.remove('out-of-the-way')
             return
-          }
-          if (typeof count === 'undefined') {
-            let count = 0
           }
           count++
           const offsetY = size * count
