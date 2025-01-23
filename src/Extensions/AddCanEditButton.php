@@ -32,20 +32,15 @@ class AddCanEditButton extends Extension
                         $elementIds[] = $element->getAnchor();
                     }
                 }
-                if (count($elementIds) > 0) {
-                    $js = $this->getButton();
+                if (!empty($elementIds)) {
                     Requirements::customScript(
-                        'const ElementalEditMeButtonIds = ' . json_encode(array_unique($elementIds)) . ';
-                        ' . $js,
+                        'const ElementalEditMeButtonIds = ' . json_encode(array_unique($elementIds)),
                         'ElementalEditMeButton_ids'
                     );
+                    Requirements::javascript('sunnysideup/elemental-edit-me-button: client/AddCanEditButton.js');
+                    Requirements::css('sunnysideup/elemental-edit-me-button: client/AddCanEditButton.css');
                 }
             }
         }
-    }
-
-    public function getButton(): string
-    {
-        return $this->owner->renderWith(AddCanEditButton::class . 'AsJs');
     }
 }
