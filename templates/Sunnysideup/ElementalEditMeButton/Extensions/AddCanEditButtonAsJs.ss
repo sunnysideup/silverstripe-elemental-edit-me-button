@@ -6,6 +6,7 @@
         <a
             href="/admin/pages/edit/EditForm/$ID/field/ElementalArea/item/[ID-GOES-HERE]/edit"
             title="Edit in CMS"
+            target="_parent"
         >
             <span>✎</span>
         </a>
