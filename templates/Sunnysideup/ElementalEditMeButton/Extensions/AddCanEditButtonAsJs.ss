@@ -29,13 +29,13 @@
 
   // Function to separate buttons if their parent height is less than 50px
   const handleOverlappingButtons = function () {
-    const size = 60
+    const minHeight = 80
     // Select all buttons with the class "edit-me-button"
     const allButtons = Array.from(document.querySelectorAll('.edit-me-button'))
     // Filter buttons where the parent's height is less than 50px
     const overlappingButtons = allButtons.filter(button => {
       const parentDiv = button.parentElement
-      return parentDiv && parentDiv.offsetHeight < size
+      return parentDiv && parentDiv.offsetHeight < minHeight
     })
 
     // Add event listeners to filtered buttons
@@ -56,7 +56,7 @@
             return
           }
           count++
-          const offsetY = size * count
+          const offsetY = minHeight * count
           otherButton.style.marginTop = `${offsetY}px` // Apply dynamic margin-top
           otherButton.classList.add('out-of-the-way')
         })
