@@ -1,16 +1,15 @@
-<%-- keep space here --%>
-
-;(function () {
+window.addEventListener('load', () => {
   const template = `
-    <div class="edit-me-button">
-        <a
-            href="/admin/pages/edit/EditForm/$ID/field/ElementalArea/item/[ID-GOES-HERE]/edit"
-            title="Edit in CMS"
-        >
-            <span>✎</span>
-        </a>
-    </div>
-`
+            <div class="edit-me-button">
+                <a
+                    href="/admin/pages/edit/EditForm/[PAGE-ID-GOES-HERE]/field/ElementalArea/item/[ELEMENT-ID-GOES-HERE]/edit"
+                    title="Edit in CMS"
+                    target="_parent"
+                >
+                    <span>✎</span>
+                </a>
+            </div>
+        `
   const applyTemplateToElements = function (
     ElementalEditMeButtonIds,
     template
@@ -20,7 +19,9 @@
       let elem = document.querySelector('#' + key)
       if (elem) {
         elem.style.position = 'relative'
-        const templateForMe = template.replace('[ID-GOES-HERE]', id)
+        let templateForMe = template
+          .replace('[ELEMENT-ID-GOES-HERE]', id)
+          .replace('[PAGE-ID-GOES-HERE]', ElementalEditMeButtonPageID)
         elem.innerHTML = templateForMe + elem.innerHTML
       }
     }
@@ -28,20 +29,20 @@
 
   // Function to separate buttons if their parent height is less than 50px
   const handleOverlappingButtons = function () {
-    const size = 60
+    const minHeight = 80
     // Select all buttons with the class "edit-me-button"
     const allButtons = Array.from(document.querySelectorAll('.edit-me-button'))
     // Filter buttons where the parent's height is less than 50px
     const overlappingButtons = allButtons.filter(button => {
       const parentDiv = button.parentElement
-      return parentDiv && parentDiv.offsetHeight < size
+      return parentDiv && parentDiv.offsetHeight < minHeight
     })
 
     // Add event listeners to filtered buttons
     overlappingButtons.forEach(button => {
       button.addEventListener('mouseenter', () => {
         let count = 0
-        if(button.classList.contains('out-of-the-way')) {
+        if (button.classList.contains('out-of-the-way')) {
           return
         }
         allButtons.forEach((otherButton, index) => {
@@ -55,7 +56,7 @@
             return
           }
           count++
-          const offsetY = size * count
+          const offsetY = minHeight * count
           otherButton.style.marginTop = `${offsetY}px` // Apply dynamic margin-top
           otherButton.classList.add('out-of-the-way')
         })
@@ -99,6 +100,4 @@
   applyTemplateToElements(ElementalEditMeButtonIds, template)
 
   handleOverlappingButtons()
-})()
-
-<%-- keep space here --%>
+})
