@@ -44,7 +44,7 @@ class AddCanEditButton extends Extension
 
                         .edit-me-button {
                             transition: all 0.3s;
-                            z-index: 1;
+                            z-index: 999;
                             position: absolute;
                             top: 10px;
                             right: 10px;
