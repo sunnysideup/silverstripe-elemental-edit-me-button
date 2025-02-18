@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const template = `
             <div class="edit-me-button">
                 <a
