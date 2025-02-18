@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let templateForMe = template
           .replace('[ELEMENT-ID-GOES-HERE]', id)
           .replace('[PAGE-ID-GOES-HERE]', ElementalEditMeButtonPageID)
-        elem.innerHTML = templateForMe + elem.innerHTML
+        elem.insertAdjacentHTML('afterbegin', templateForMe)
       }
     }
   }
