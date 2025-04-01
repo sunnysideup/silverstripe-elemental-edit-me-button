@@ -26,7 +26,7 @@ class GridFieldDetailFormItemRequestExtension extends Extension
             if (is_subclass_of($obj, BaseElement::class, true)) {
                 $previewLink = $obj->PreviewLink();
                 $page = $obj->getPage();
-                if($page && $page instanceof SiteTree) {
+                if ($page && $page instanceof SiteTree) {
                     $link = $page->CMSEditLink();
                     $actions->push(
                         LiteralField::create(
@@ -37,14 +37,16 @@ class GridFieldDetailFormItemRequestExtension extends Extension
                         )
                     );
                 }
-                $actions->push(
-                    LiteralField::create(
-                        'PreviewLive',
-                        '<div class="btn action preview-element-action btn-primary">
-                            <a href="' . $previewLink . '" style="color: white;">View Live Version</a>
-                        </div>'
-                    )
-                );
+                if ($obj->isPublished()) {
+                    $actions->push(
+                        LiteralField::create(
+                            'PreviewLive',
+                            '<div class="btn action preview-element-action btn-primary">
+                                <a href="' . $previewLink . '" style="color: white;">View Live Version</a>
+                            </div>'
+                        )
+                    );
+                }
                 if (!strpos((string) $previewLink, '?')) {
                     $previewLink .= '?';
                 }
