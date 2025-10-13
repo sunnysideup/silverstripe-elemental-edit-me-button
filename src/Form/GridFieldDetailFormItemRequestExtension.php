@@ -42,7 +42,7 @@ class GridFieldDetailFormItemRequestExtension extends Extension
                         LiteralField::create(
                             'PreviewLive',
                             '<div class="btn action preview-element-action btn-primary">
-                                <a href="' . $previewLink . '" style="color: white;">View Live Version</a>
+                                <a href="' . $previewLink . '" style="color: white;">View Published Version</a>
                             </div>'
                         )
                     );
