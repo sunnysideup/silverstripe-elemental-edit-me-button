@@ -47,7 +47,7 @@ class GridFieldDetailFormItemRequestExtension extends Extension
                         )
                     );
                 }
-                if (!strpos((string) $previewLink, '?')) {
+                if (! strpos((string) $previewLink, '?')) {
                     $previewLink .= '?';
                 }
                 $previewLink = str_replace('?', '?stage=Stage&', $previewLink);

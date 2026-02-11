@@ -3,15 +3,12 @@
 namespace Sunnysideup\ElementalEditMeButton\Extensions;
 
 use DNADesign\Elemental\Extensions\ElementalPageExtension;
-use SilverStripe\CMS\Controllers\ContentController;
-use SilverStripe\CMS\Model\SiteTree;
-use SilverStripe\Core\Convert;
-use SilverStripe\Core\Extension;
-use SilverStripe\Security\Permission;
-use SilverStripe\View\Requirements;
 use Page;
 use PageController;
+use SilverStripe\Core\Extension;
+use SilverStripe\Security\Permission;
 use SilverStripe\Security\Security;
+use SilverStripe\View\Requirements;
 
 /**
  * Class \Sunnysideup\ElementalEditMeButton\Extensions\AddCanEditButton
@@ -36,7 +33,7 @@ class AddCanEditButton extends Extension
                             $elementIds[$element->ID] = $element->getAnchor();
                         }
                     }
-                    if (!empty($elementIds)) {
+                    if ($elementIds !== []) {
                         Requirements::customScript(
                             '
                                 const ElementalEditMeButtonIds = ' . json_encode($elementIds) . ';
