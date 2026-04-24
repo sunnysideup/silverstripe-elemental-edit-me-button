@@ -20,14 +20,14 @@ class GridFieldDetailFormItemRequestExtension extends Extension
     {
         if ($this->getOwner()->record->exists()) {
             /** @var GridFieldDetailForm_ItemRequest $owner */
-            $owner = $this->owner;
+            $owner = $this->getOwner();
             /** @var BaseElement $obj */
             $obj = $owner->record;
             if (is_subclass_of($obj, BaseElement::class, true)) {
                 $previewLink = $obj->PreviewLink();
                 $page = $obj->getPage();
                 if ($page && $page instanceof SiteTree) {
-                    $link = $page->CMSEditLink();
+                    $link = $page->getCMSEditLink();
                     $actions->push(
                         LiteralField::create(
                             'BackToPage',
@@ -37,6 +37,7 @@ class GridFieldDetailFormItemRequestExtension extends Extension
                         )
                     );
                 }
+
                 if ($obj->isPublished()) {
                     $actions->push(
                         LiteralField::create(
@@ -47,9 +48,11 @@ class GridFieldDetailFormItemRequestExtension extends Extension
                         )
                     );
                 }
+
                 if (! strpos((string) $previewLink, '?')) {
                     $previewLink .= '?';
                 }
+
                 $previewLink = str_replace('?', '?stage=Stage&', $previewLink);
                 $actions->push(
                     LiteralField::create(
