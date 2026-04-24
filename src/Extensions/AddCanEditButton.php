@@ -22,7 +22,7 @@ class AddCanEditButton extends Extension
         /** @var Page $page */
         $user = Security::getCurrentUser();
         if ($user && Permission::check('CMS_ACCESS_CMSMain', 'any', $user)) {
-            $page = $this->owner->data();
+            $page = $this->getOwner()->data();
             if ($page && $page->hasExtension(ElementalPageExtension::class)) {
                 $elements = $page->ElementalArea()?->Elements();
                 if ($elements && $elements->exists()) {
@@ -33,6 +33,7 @@ class AddCanEditButton extends Extension
                             $elementIds[$element->ID] = $element->getAnchor();
                         }
                     }
+
                     if ($elementIds !== []) {
                         Requirements::customScript(
                             '
