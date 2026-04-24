@@ -27,7 +27,7 @@ class GridFieldDetailFormItemRequestExtension extends Extension
                 $previewLink = $obj->PreviewLink();
                 $page = $obj->getPage();
                 if ($page && $page instanceof SiteTree) {
-                    $link = $page->CMSEditLink();
+                    $link = $page->getCMSEditLink();
                     $actions->push(
                         LiteralField::create(
                             'BackToPage',
