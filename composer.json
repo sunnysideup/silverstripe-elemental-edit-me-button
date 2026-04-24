@@ -31,5 +31,6 @@
     "expose": [
       "client"
     ]
+
   }
 }

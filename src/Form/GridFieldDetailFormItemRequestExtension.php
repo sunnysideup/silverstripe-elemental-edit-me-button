@@ -60,6 +60,16 @@ class GridFieldDetailFormItemRequestExtension extends Extension
                     )
                 );
             }
+
+            $link = str_replace('?', '?stage=Stage&', $link);
+            $actions->push(
+                LiteralField::create(
+                    'PreviewDraftVersion',
+                    '<div class="btn action preview-element-action btn btn-primary">
+                        <a href="' . $link . '" style="color: white;">Preview Draft</a>
+                    </div>'
+                )
+            );
         }
     }
 }
