@@ -24,7 +24,7 @@ class GridFieldDetailFormItemRequestExtension extends Extension
             /** @var BaseElement $obj */
             $obj = $owner->record;
             if (is_subclass_of($obj, BaseElement::class, true)) {
-                $previewLink = $obj->PreviewLink();
+                $previewLinkLive = $obj->PreviewLink();
                 $page = $obj->getPage();
                 if ($page && $page instanceof SiteTree) {
                     $link = $page->CMSEditLink();
@@ -43,36 +43,28 @@ class GridFieldDetailFormItemRequestExtension extends Extension
                         LiteralField::create(
                             'PreviewLive',
                             '<div class="btn action preview-element-action btn-primary">
-                                <a href="' . $previewLink . '" style="color: white;">View Published Version</a>
+                                <a href="' . $previewLinkLive . '" style="color: white;">View Published Version</a>
                             </div>'
                         )
                     );
                 }
 
-                if (! strpos((string) $previewLink, '?')) {
-                    $previewLink .= '?';
+                $previewLinkDraft = $previewLinkLive;
+                if (! strpos((string) $previewLinkDraft, '?')) {
+                    $previewLinkDraft .= '?';
                 }
 
-                $previewLink = str_replace('?', '?stage=Stage&', $previewLink);
+                $previewLinkDraft = str_replace('?', '?stage=Stage&', $previewLinkDraft);
                 $actions->push(
                     LiteralField::create(
                         'PreviewDraftVersion',
                         '<div class="btn action preview-element-action btn btn-primary">
-                            <a href="' . $previewLink . '" style="color: white;">Preview Draft</a>
+                            <a href="' . $previewLinkDraft . '" style="color: white;">Preview Draft</a>
                         </div>'
                     )
                 );
             }
 
-            $link = str_replace('?', '?stage=Stage&', $link);
-            $actions->push(
-                LiteralField::create(
-                    'PreviewDraftVersion',
-                    '<div class="btn action preview-element-action btn btn-primary">
-                        <a href="' . $link . '" style="color: white;">Preview Draft</a>
-                    </div>'
-                )
-            );
         }
     }
 }
