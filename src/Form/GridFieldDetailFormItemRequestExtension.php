@@ -25,16 +25,27 @@ class GridFieldDetailFormItemRequestExtension extends Extension
             /** @var BaseElement $obj */
             $obj = $owner->record;
             if (is_subclass_of($obj, BaseElement::class, true)) {
-                $previewLink = $obj->PreviewLink();
+                $previewLinkLive = $obj->PreviewLink();
                 $page = $obj->getPage();
                 if ($page && $page instanceof SiteTree) {
                     $link = $page->getCMSEditLink();
+                    $random = rand(100000, 999999);
                     $actions->push(
                         LiteralField::create(
                             'BackToPage',
-                            '<a href="' . $link . '" class="btn action back-to-page-action btn-outline-primary">
-                                <span style="color: #317c33">Back to Page</span>
-                            </a>'
+                            '<a href="' . $link . '" class="btn action back-to-page-action btn-outline-primary" id="back-to-page-action-' . $random . '">
+                                <span style="color: var(--bs-btn-color);">Back to Page</span>
+                            </a>
+                            <style>
+                                #back-to-page-action-' . $random . ':hover span {
+                                    color: #fff !important;
+                                }
+                                .btn.action.preview-element-action.btn-primary:hover,
+                                .btn.action.preview-element-action.btn-primary:hover a {
+                                    text-decoration: none!important;
+                                }
+
+                            </style>'
                         )
                     );
                 }
@@ -44,25 +55,18 @@ class GridFieldDetailFormItemRequestExtension extends Extension
                         LiteralField::create(
                             'PreviewLive',
                             '<div class="btn action preview-element-action btn-primary">
-                                <a href="' . $previewLink . '" style="color: white;">View Published Version</a>
+                                <a href="' . $previewLinkLive . '" style="color: white;">View Published Version</a>
                             </div>'
                         )
                     );
                 }
 
-                if (! strpos((string) $previewLink, '?')) {
-                    $previewLink .= '?';
+                if (! strpos((string) $previewLinkLive, '?')) {
+                    $previewLinkLive .= '?';
                 }
 
-                $previewLink = str_replace('?', '?stage=Stage&', $previewLink);
-                $actions->push(
-                    LiteralField::create(
-                        'PreviewDraftVersion',
-                        '<div class="btn action preview-element-action btn btn-primary">
-                            <a href="' . $previewLink . '" style="color: white;">Preview Draft</a>
-                        </div>'
-                    )
-                );
+                $previewLinkDraft = str_replace('?', '?stage=Stage&', $previewLinkLive);
+
                 if ($link) {
 
                     $link = str_replace('?', '?stage=Stage&', $link);
@@ -70,7 +74,7 @@ class GridFieldDetailFormItemRequestExtension extends Extension
                         LiteralField::create(
                             'PreviewDraftVersion',
                             '<div class="btn action preview-element-action btn btn-primary">
-                                <a href="' . $link . '" style="color: white;">Preview Draft</a>
+                                <a href="' . $previewLinkDraft . '" style="color: white;">Preview Draft</a>
                             </div>'
                         )
                     );
